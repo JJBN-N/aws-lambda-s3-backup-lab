@@ -1,4 +1,5 @@
 # AWS Serverless Data Backup Pipeline
+AWS Lambda + DynamoDB + Scheduled S3 Backups
 
 A beginner–intermediate AWS project that fetches sample users from JSONPlaceholder, stores them in DynamoDB, and exports timestamped JSON backups to a private S3 bucket every 2 minutes.
 
@@ -50,6 +51,7 @@ Keep the Lambda functions outside a custom VPC for this public API exercise unle
 ```text
 .
 ├── README.md
+├── AWS_Lamda_DynamoDB_S3_Backup_Lab_Report.md
 ├── lambda_zips/
 │   ├── lambda-import-users.zip
 │   └── lambda-backup-to-s3.zip
@@ -151,20 +153,6 @@ This project creates JSON exports from a DynamoDB table scan. It is a learning e
 
 For production disaster recovery, consider DynamoDB Point-in-Time Recovery (PITR) and managed DynamoDB Export to S3. Set retention and recovery objectives according to the workload.
 
-## Troubleshooting
-
-| Problem | Check |
-|---|---|
-| `KeyError: TABLE_NAME` or `BUCKET_NAME` | Confirm environment variables on the correct Lambda. |
-| DynamoDB `AccessDenied` | Check the function's IAM policy, table ARN, Region, and required action. |
-| S3 `AccessDenied` | Check the bucket name and `s3:PutObject` resource prefix. |
-| `ResourceNotFoundException` | Verify table name and Region. |
-| `NoSuchBucket` | Verify `BUCKET_NAME`. |
-| `ValidationException` for the key | Confirm `id` is a Number partition key. |
-| Unable to import `lambda_function` | Upload the correct inner ZIP and verify the handler. |
-| API request times out | Check internet access, API availability, and Lambda timeout. |
-| Scheduler creates no files | Check that the schedule is enabled, targets Lambda 2, and has an invocation role; inspect CloudWatch logs. |
-| Export is empty | Run Lambda 1 and verify DynamoDB contains records. |
 
 ## Cost and cleanup
 
