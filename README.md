@@ -1,5 +1,4 @@
-# AWS Serverless Data Backup Pipeline
-AWS Lambda + DynamoDB + Scheduled S3 Backups
+# AWS Serverless Data Backup Pipeline (AWS Lambda + DynamoDB + Scheduled S3 Backups)
 
 
 A beginner–intermediate AWS project that fetches sample users from JSONPlaceholder, stores them in DynamoDB, and exports timestamped JSON backups to a private S3 bucket every 2 minutes.
